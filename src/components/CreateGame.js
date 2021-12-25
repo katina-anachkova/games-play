@@ -1,4 +1,4 @@
-const CreateGame = (props) => {
+const CreateGame = () => {
     return (
         <section id="create-page" className="auth">
             <form id="create">

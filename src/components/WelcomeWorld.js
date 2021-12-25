@@ -1,4 +1,4 @@
-const WelcomeWorld = (props) => {
+const WelcomeWorld = () => {
     return (
         <section id="welcome-world">
 
