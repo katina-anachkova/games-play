@@ -1,6 +1,6 @@
 import Header from "./components/Header";
 import WelcomeWorld from "./components/WelcomeWorld";
-import CatalogGame from "./components/CatalogGame";
+import CatalogGame from "./components/GameCatalog/CatalogGame";
 import CreateGame from "./components/CreateGame";
 import {useState} from 'react';
 // import DetailsGame from "./components/DetailsGame";
