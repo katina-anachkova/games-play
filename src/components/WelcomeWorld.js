@@ -1,19 +1,20 @@
-import * as gameService from "../sevices/GameService";
 import { useState, useEffect } from "react";
-import  LatestGamesCard  from './LatestGamesCard'
+import * as gameService from "../sevices/GameService";
+import LatestGamesCard from './LatestGamesCard'
 
-const WelcomeWorld = ({navigationChangeHandler}) => {
+const WelcomeWorld = () => {
 
     const [games, setGames] = useState([]);
 
     useEffect(() => {
         gameService.getLatest()
-            .then(res =>
-                setGames(res))
-    })
+            .then(result => {
+                setGames(result);
+            })
+    }, []);
+
     return (
         <section id="welcome-world">
-
             <div className="welcome-message">
                 <h2>ALL new games are</h2>
                 <h3>Only in GamesPlay</h3>
@@ -22,21 +23,18 @@ const WelcomeWorld = ({navigationChangeHandler}) => {
 
             <div id="home-page">
                 <h1>Latest Games</h1>
-
                 {
-                    games.length > 0
-                        ? games.map(x => 
+                games.length > 0
+                    ? games.map(x =>
                         <LatestGamesCard
-                            navigationChangeHandler={navigationChangeHandler}
-                            game={x}
                             key={x._id}
+                            game={x}
                         />)
-                        : <p className="no-articles">No games yet</p>
+                    : <p className="no-articles">No games yet</p>
                 }
-
             </div>
         </section>
-    )
+    );
 }
 
-export default WelcomeWorld
+export default WelcomeWorld;

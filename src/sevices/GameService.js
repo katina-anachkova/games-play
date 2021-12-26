@@ -10,7 +10,7 @@ export function getOne(id) {
         .then(res => res.json())
 }
 
-export function getLatest(){
-   return fetch(`${baseUrl}/games?sortBy=_createdOn%20desc&distinct=category`)
-    .then(res => res.json());
+export function getLatest() {
+    return fetch(`${baseUrl}/games?sortBy=_createdOn%20desc&distinct=category`)
+        .then(res => res.json());
 }
