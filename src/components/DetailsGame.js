@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import * as gameService from '../sevices/GameService.js';
 
-
 const DetailsGame = ({match, location, history }) => {
   
     const [game, setGame] = useState({});

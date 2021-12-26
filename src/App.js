@@ -1,4 +1,4 @@
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 import Header from "./components/Header";
 import WelcomeWorld from "./components/WelcomeWorld";
 import CatalogGame from "./components/GameCatalog/CatalogGame";
@@ -12,7 +12,7 @@ import Register from "./components/Register";
 function App() {
     return (
         <div id="box">
-            <Header/>
+            <Header />
             <main id="main-content">
                 <Switch>
                     <Route path="/" exact component={WelcomeWorld} />
@@ -21,6 +21,10 @@ function App() {
                     <Route path="/register" component={Register} />
                     <Route path="/create-game" component={CreateGame} />
                     <Route path="/games/:gameId" component={DetailsGame} />
+                    <Route path="/logout" render={(props) => {
+                        console.log('logged out');
+                        return <Redirect to="/" />
+                    }} />
                 </Switch>
             </main>
         </div>
