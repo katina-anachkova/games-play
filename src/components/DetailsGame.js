@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { getUserData } from "../util.js";
 import * as gameService from '../services/GameService.js';
 import GameDetailsControls from "./GameDetailsControls.js";
 import Comment from './CommentTemplate.js'

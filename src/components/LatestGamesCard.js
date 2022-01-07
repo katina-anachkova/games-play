@@ -15,7 +15,7 @@ const LatestGamesCard = ({
             </div>
             <div className="data-buttons">
                 <Link
-                    to={`/games/${game._id}`}
+                    to={`/details/${game._id}`}
                     className="btn details-btn"
                 >
                     Details

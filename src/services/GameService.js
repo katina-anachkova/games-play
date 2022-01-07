@@ -5,15 +5,15 @@ export const register = api.register;
 export const logout = api.logout;
 
 export async function getAll() {
-    return api.get(`data/games?sortBy=_createdOn%20desc`)
+    return api.get(`/data/games?sortBy=_createdOn%20desc`)
 }
 
 export async function getOne(id) {
-    return api.get(`data/games/` + id)
+    return api.get(`/data/games/` + id)
 }
 
 export async function getLatest() {
-    return api.get(`data/games?sortBy=_createdOn%20desc&distinct=category`)
+    return api.get(`/data/games?sortBy=_createdOn%20desc&distinct=category`)
 }
 
 export async function createGame(game) {

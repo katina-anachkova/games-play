@@ -15,7 +15,7 @@ const EditGame = ({ match }) => {
             .then(game => {
                 setGame(game)
             });
-    }, [game]);
+    }, []);
 
     const onGameEdit = (e) => {
         e.preventDefault();
@@ -33,19 +33,19 @@ const EditGame = ({ match }) => {
 
                     <h1>Edit Game</h1>
                     <label htmlFor="leg-title">Legendary title:</label>
-                    <input type="text" id="title" name="title" />
+                    <input type="text" id="title" name="title" defaultValue={game.title}/>
 
                     <label htmlFor="category">Category:</label>
-                    <input type="text" id="category" name="category" />
+                    <input type="text" id="category" name="category" defaultValue={game.category} />
 
                     <label htmlFor="levels">MaxLevel:</label>
-                    <input type="number" id="maxLevel" name="maxLevel" min="1" />
+                    <input type="number" id="maxLevel" name="maxLevel" min="1" defaultValue={game.maxLevel} />
 
                     <label htmlFor="game-img">Image:</label>
-                    <input type="text" id="imageUrl" name="imageUrl" />
+                    <input type="text" id="imageUrl" name="imageUrl" defaultValue={game.imageUrl} />
 
                     <label htmlFor="summary">Summary:</label>
-                    <textarea name="summary" id="summary"></textarea>
+                    <textarea name="summary" id="summary">{game.summary}</textarea>
                     <input className="btn submit" type="submit" />
 
                 </div>
