@@ -8,18 +8,45 @@ const DetailsGame = ({ match }) => {
 
     const userData = getUserData();
     const [game, setGame] = useState({});
-    const [comments, setComments] = useState({});
+    const [comments, setComments] = useState([]);
     const isOwner = userData && userData.id == game._ownerId;
+    const gameId = match.params.gameId;
 
     useEffect(async () => {
-        let result = await gameService.getOne(match.params.gameId)
+        let result = await gameService.getOne(gameId)
         setGame(result)
     }, []);
 
     useEffect(async () => {
-        let result = await gameService.getComments(match.params.gameId);
+        let result = await gameService.getComments(gameId);
         setComments(result)
-    }, []);
+    }, [game]);
+
+    const onCommentHandler = (e) => {
+
+        e.preventDefault();
+
+        let formData = new FormData(e.target);
+
+        let comment = formData.get('comment').trim();
+
+        if (!comment) {
+            return alert('Cannot send an empty comment!')
+        }
+
+        const body = {
+            gameId: gameId,
+            comment: comment
+        }
+
+        try {
+            gameService.postComment(body)
+        }
+        catch (err) {
+            alert(err.message);
+        }
+        console.log(comments.length)
+    }
 
     return (
         <section id="game-details">
@@ -54,14 +81,13 @@ const DetailsGame = ({ match }) => {
             {userData && !isOwner ?
                 <article className="create-comment">
                     <label>Add new comment:</label>
-                    <form className="form">
+                    <form className="form" onSubmit={onCommentHandler}>
                         <textarea name="comment" placeholder="Comment......"></textarea>
                         <input className="btn submit" type="submit" />
                     </form>
                 </article>
                 : null
             }
-
         </section>
     );
 }
