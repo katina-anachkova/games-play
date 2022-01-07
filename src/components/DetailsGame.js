@@ -4,7 +4,7 @@ import * as gameService from '../sevices/GameService.js';
 const DetailsGame = ({match, location, history }) => {
   
     const [game, setGame] = useState({});
-console.log(history)
+
     useEffect(async () => {
         let result = await gameService.getOne(match.params.gameId)
         setGame(result)

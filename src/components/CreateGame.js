@@ -1,9 +1,34 @@
+import { useHistory } from "react-router";
+import * as bookService from '../services/BookService';
+
 const CreateGame = () => {
+
+    let history = useHistory();
+
+    const onBookCreate = (e) => {
+
+        let formData = new FormData(e.target);
+
+        let title = formData.get('title').trim();
+        let category = formData.get('category').trim();
+        let maxLevel = formData.get('maxLevel');
+        let imageUrl = formData.get('imageUrl').trim();
+        let summary = formData.get('summary').trim();
+
+        bookService.CreateGame({
+                title,
+                category,
+                maxLevel,
+                imageUrl,
+                summary            
+        });
+        history.push('/dashboard');
+    }
+
     return (
         <section id="create-page" className="auth">
-            <form id="create">
+            <form id="create" onSubmit={onBookCreate}>
                 <div className="container">
-
                     <h1>Create Game</h1>
                     <label htmlFor="leg-title">Legendary title:</label>
                     <input type="text" id="title" name="title" placeholder="Enter game title..." />

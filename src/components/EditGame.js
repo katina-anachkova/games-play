@@ -1,4 +1,8 @@
-const EditGame = () => {
+import * as bookService from '../services/BookService'
+
+const EditBook= ({book}) => {
+
+
     return (
         <section id="edit-page" className="auth">
         <form id="edit">

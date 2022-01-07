@@ -4,30 +4,53 @@ import WelcomeWorld from "./components/WelcomeWorld";
 import CatalogGame from "./components/GameCatalog/CatalogGame";
 import CreateGame from "./components/CreateGame";
 import DetailsGame from "./components/DetailsGame";
-// import EditGame from "./components/EditGame";
+import EditGame from "./components/EditGame";
 import Login from "./components/Login";
 import Register from "./components/Register";
-// import NotFoundPage from './components/NotFoundPage'
+import AuthCtx from "./context/AuthCtx";
 
 function App() {
+    const [userInfo, setUserInfo] = useState({});
+
+    const onRegister = (user) => {
+        setUserInfo({ user });
+    }
+
+    const onLogin = (user) => {
+        setUserInfo({ user });
+    }
+
+    const onLogout = () => {
+        util.clearUserData();
+    }
     return (
-        <div id="box">
-            <Header />
-            <main id="main-content">
-                <Switch>
-                    <Route path="/" exact component={WelcomeWorld} />
-                    <Route path="/games" exact component={CatalogGame} />
-                    <Route path="/login" component={Login} />
-                    <Route path="/register" component={Register} />
-                    <Route path="/create-game" component={CreateGame} />
-                    <Route path="/games/:gameId" component={DetailsGame} />
-                    <Route path="/logout" render={(props) => {
-                        console.log('logged out');
-                        return <Redirect to="/" />
-                    }} />
-                </Switch>
-            </main>
-        </div>
+        <AuthCtx.Provider value={userInfo}>
+            <div id="box">
+                <Header />
+                <main id="main-content">
+                    <Switch>
+                        <Route path="/" exact component={WelcomeWorld} />
+                        <Route path="/games" exact component={CatalogGame} />
+                        <Route path="/create" component={CreateGame} />
+                        <Route path="/edit/:gameId" component={EditGame} />
+                        <Route path="/games/:gameId" component={DetailsGame} />
+                        <Route path="/details/:bookId" component={Details} />
+                        <Route path="/login">
+                            <Login onLogin={onLogin} />
+                        </Route>                    <Route path="/register" component={Register} />
+                        <Route path="/register">
+                            <Register onRegister={onRegister} />
+                        </Route>
+                        <Route path="/logout" render={(props) => {
+                            logout()
+                            onLogout()
+                            return <Redirect to="/dashboard" />
+                        }} />
+                       
+                    </Switch>
+                </main>
+            </div>
+        </AuthCtx.Provider>
     );
 }
 

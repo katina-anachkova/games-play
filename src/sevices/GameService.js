@@ -1,16 +1,31 @@
-const baseUrl = 'http://localhost:3030/data'
+import * as api from './Api.js';
 
-export function getAll() {
-    return fetch(`${baseUrl}/games?sortBy=_createdOn%20desc`)
-        .then(res => res.json())
+export const login = api.login;
+export const register = api.register;
+export const logout = api.logout;
+
+export async function getAll() {
+    return api.get(`data/games?sortBy=_createdOn%20desc`)
 }
 
-export function getOne(id) {
-    return fetch(`${baseUrl}/games/` + id)
-        .then(res => res.json())
+export async function getOne(id) {
+    return api.get(`data/games/` + id)
 }
 
-export function getLatest() {
-    return fetch(`${baseUrl}/games?sortBy=_createdOn%20desc&distinct=category`)
-        .then(res => res.json());
+export async function getLatest() {
+    return api.get(`data/games?sortBy=_createdOn%20desc&distinct=category`)
 }
+
+export async function createGame(game) {
+    return api.post('/data/games', game)
+}
+
+export async function editGame(id, game) {
+    return api.put('/data/games/' + id, game)
+}
+
+export async function deleteGame(id) {
+    return api.del('/data/games/' + id)
+}
+
+
