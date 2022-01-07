@@ -1,13 +1,22 @@
 import { useState, useEffect } from 'react';
+import { getUserData } from "../util.js";
 import * as gameService from '../sevices/GameService.js';
+import GameDetailsControls from "./GameDetailsControls.js";
+import Comment from './CommentTemplate.js'
 
-const DetailsGame = ({match, location, history }) => {
-  
+const DetailsGame = ({ match }) => {
+
     const [game, setGame] = useState({});
+    const [comments, setComments] = useState({});
 
     useEffect(async () => {
         let result = await gameService.getOne(match.params.gameId)
         setGame(result)
+    }, []);
+
+    useEffect(async () => {
+        let result = await gameService.getComments(match.params.gameId);
+        setComments(result)
     }, []);
 
     return (
@@ -28,20 +37,15 @@ const DetailsGame = ({match, location, history }) => {
 
                 <div className="details-comments">
                     <h2>Comments:</h2>
-                    <ul>
-                        <li className="comment">
-                            <p>Content: I rate this one quite highly.</p>
-                        </li>
-                        <li className="comment">
-                            <p>Content: The best game.</p>
-                        </li>
-                    </ul>
-                    <p className="no-comment">No comments.</p>
+                    {comments.length > 0
+                        ? <ul>
+                            {comments.map(x => <Comment key={x._id} game={x} />)}
+                        </ul>
+                        : <p className="no-comment">No comments.</p>}
                 </div>
 
                 <div className="buttons">
-                    <a href="#" className="button">Edit</a>
-                    <a href="#" className="button">Delete</a>
+                    <GameDetailsControls match={match} />
                 </div>
             </div>
 

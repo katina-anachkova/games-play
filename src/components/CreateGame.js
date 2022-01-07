@@ -1,5 +1,5 @@
 import { useHistory } from "react-router";
-import * as gameService from '../sevices/GameService.js'
+import * as gameService from '../sevices/GameService.\js'
 
 const CreateGame = () => {
 
@@ -15,7 +15,7 @@ const CreateGame = () => {
         let imageUrl = formData.get('imageUrl').trim();
         let summary = formData.get('summary').trim();
 
-        gameService.CreateGame({
+        gameService.createGame({
                 title,
                 category,
                 maxLevel,

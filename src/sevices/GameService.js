@@ -28,4 +28,7 @@ export async function deleteGame(id) {
     return api.del('/data/games/' + id)
 }
 
+export async function getComments(id) {
+    return api.get('/data/comments?where=gameId%3D%22{gameId}%22' + id)
+}
 

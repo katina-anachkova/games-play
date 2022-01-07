@@ -35,8 +35,7 @@ function App() {
                         <Route path="/games" exact component={CatalogGame} />
                         <Route path="/create" component={CreateGame} />
                         <Route path="/edit/:gameId" component={EditGame} />
-                        <Route path="/games/:gameId" component={DetailsGame} />
-                        <Route path="/details/:bookId" component={Details} />
+                        <Route path="/details/:gameId" component={DetailsGame} />
                         <Route path="/login">
                             <Login onLogin={onLogin} />
                         </Route>                    <Route path="/register" component={Register} />
