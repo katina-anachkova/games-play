@@ -34,7 +34,7 @@ function App() {
                     <Switch>
                         <Route path="/" exact component={WelcomeWorld} />
                         <Route path="/games" exact component={CatalogGame} />
-                        <Route path="/create-game" component={CreateGame} />
+                        <Route path="/create" component={CreateGame} />
                         <Route path="/edit/:gameId" component={EditGame} />
                         <Route path="/details/:gameId" component={DetailsGame} />
                         <Route path="/login">

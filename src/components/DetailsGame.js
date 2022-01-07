@@ -2,11 +2,14 @@ import { useState, useEffect } from 'react';
 import * as gameService from '../services/GameService.js';
 import GameDetailsControls from "./GameDetailsControls.js";
 import Comment from './CommentTemplate.js'
+import { getUserData } from '../util.js';
 
 const DetailsGame = ({ match }) => {
 
+    const userData = getUserData();
     const [game, setGame] = useState({});
     const [comments, setComments] = useState({});
+    const isOwner = userData && userData.id == game._ownerId;
 
     useEffect(async () => {
         let result = await gameService.getOne(match.params.gameId)
@@ -48,13 +51,16 @@ const DetailsGame = ({ match }) => {
                 </div>
             </div>
 
-            <article className="create-comment">
-                <label>Add new comment:</label>
-                <form className="form">
-                    <textarea name="comment" placeholder="Comment......"></textarea>
-                    <input className="btn submit" type="submit" />
-                </form>
-            </article>
+            {userData && !isOwner ?
+                <article className="create-comment">
+                    <label>Add new comment:</label>
+                    <form className="form">
+                        <textarea name="comment" placeholder="Comment......"></textarea>
+                        <input className="btn submit" type="submit" />
+                    </form>
+                </article>
+                : null
+            }
 
         </section>
     );
