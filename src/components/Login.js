@@ -1,17 +1,35 @@
-import { useHistory } from 'react-router-dom'
-const Login = ({ history }) => {
+import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
+import { login } from "../services/Api";
 
-    let historyHook = useHistory();
+const Login = ({ onLogin }) => {
 
-    const onFormuSbmit = (e) => {
+    let history = useHistory();
+
+    const onFormSubmit = (e) => {
         e.preventDefault();
-        //todo: login
-        // history.push('/games')
-        historyHook.push('/games');
+
+        const formData = new FormData(e.target);
+        const email = formData.get('email').trim();
+        const password = formData.get('password').trim();
+        const isAuthenticated = true;
+
+        if (email == '' || password == '') {
+            return alert('All fields ar required!');
+        }
+
+        login(email, password);
+
+        onLogin({ email, password, isAuthenticated });
+
+        if (sessionStorage.length > 0) {
+            history.push('/games');
+        }
     }
+
     return (
         <section id="login-page" className="auth">
-            <form id="login" onSubmit={onFormuSbmit}>
+            <form id="login" onSubmit={onFormSubmit}>
 
                 <div className="container">
                     <div className="brand-logo"></div>
@@ -23,7 +41,7 @@ const Login = ({ history }) => {
                     <input type="password" id="login-password" name="password" />
                     <input type="submit" className="btn submit" />
                     <p className="field">
-                        <span>If you don't have profile click <a href="#">here</a></span>
+                        <span>If you don't have profile click <Link to="/register">here</Link></span>
                     </p>
                 </div>
             </form>

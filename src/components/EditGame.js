@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
-import * as gameService from '../sevices/GameService.js'
+import * as gameService from '../services/GameService.js'
 
 const EditGame = ({ match }) => {
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getUserData } from "../util.js";
-import * as gameService from '../sevices/GameService.js';
+import * as gameService from '../services/GameService.js';
 import GameDetailsControls from "./GameDetailsControls.js";
 import Comment from './CommentTemplate.js'
 
@@ -39,7 +39,7 @@ const DetailsGame = ({ match }) => {
                     <h2>Comments:</h2>
                     {comments.length > 0
                         ? <ul>
-                            {comments.map(x => <Comment key={x._id} game={x} />)}
+                            {comments.map(x => <Comment key={x._id} comment={x} />)}
                         </ul>
                         : <p className="no-comment">No comments.</p>}
                 </div>

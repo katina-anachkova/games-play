@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import CardGame from "./CardGame";
-import * as gameService from "../../sevices/GameService";
+import * as gameService from "../../services/GameService";
 const CatalogGame = ({navigationChangeHandler}) => {
 
     const [games, setGames] = useState([]);

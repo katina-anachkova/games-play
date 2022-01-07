@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
 import { getUserData } from '../util';
-import * as gameService from '../sevices/GameService';
+import * as gameService from '../services/GameService';
 
 const GameDetailsControls = ({ match }) => {
     const [game, setGame] = useState({});

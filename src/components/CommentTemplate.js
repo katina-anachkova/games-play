@@ -1,7 +1,7 @@
 const Comment = ({ comment }) => {
     return (
         <li className="comment">
-            <p>Content: {'to change!!!!!!!'}</p>
+            <p>Content: {comment}</p>
         </li>
     );
 }

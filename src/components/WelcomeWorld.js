@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import * as gameService from "../sevices/GameService";
+import * as gameService from "../services/GameService";
 import LatestGamesCard from './LatestGamesCard'
 
 const WelcomeWorld = () => {
