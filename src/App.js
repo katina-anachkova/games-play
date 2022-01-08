@@ -26,6 +26,7 @@ function App() {
     const onLogout = () => {
         util.clearUserData();
     }
+
     return (
         <AuthCtx.Provider value={userInfo}>
             <div id="box">
@@ -46,9 +47,9 @@ function App() {
                         <Route path="/logout" render={(props) => {
                             logout()
                             onLogout()
-                            return <Redirect to="/dashboard" />
+                            return <Redirect to="/" />
                         }} />
-                       
+
                     </Switch>
                 </main>
             </div>

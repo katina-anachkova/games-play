@@ -20,7 +20,7 @@ const DetailsGame = ({ match }) => {
     useEffect(async () => {
         let result = await gameService.getComments(gameId);
         setComments(result)
-    }, [game]);
+    }, [comments]);
 
     const onCommentHandler = (e) => {
 
