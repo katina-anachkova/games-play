@@ -1,13 +1,13 @@
 import { Route, Switch, Redirect } from 'react-router-dom'
 import { useState } from 'react';
 import Header from "./components/Header";
-import WelcomeWorld from "./components/WelcomeWorld";
+import WelcomeWorld from "./components/Home/WelcomeWorld";
 import CatalogGame from "./components/GameCatalog/CatalogGame";
 import CreateGame from "./components/CreateGame";
 import DetailsGame from "./components/DetailsGame";
 import EditGame from "./components/EditGame";
 import Login from "./components/Login";
-import Register from "./components/Register";
+import Register from "./components/Authorization/Register";
 import AuthCtx from "./context/AuthCtx";
 import * as util from './util.js'
 import { logout } from "./services/Api";
@@ -24,6 +24,7 @@ function App() {
     }
 
     const onLogout = () => {
+        setUserInfo({});
         util.clearUserData();
     }
 
