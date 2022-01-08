@@ -1,6 +1,6 @@
-import {clearUserData, getUserData, isAuthenticated, setUserData} from "../util.js";
+import {clearUserData, getUserData, setUserData} from "../util.js";
 
-const hostname = 'http://localhost:3030';
+const hostname = 'http://sotfuni-practice-server.herokuapp.com';
 
 async function request(url, options) {
     try {

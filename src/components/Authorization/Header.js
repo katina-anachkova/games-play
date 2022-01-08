@@ -1,11 +1,7 @@
 import { Link } from 'react-router-dom';
-import { useContext } from "react";
-import AuthCtx from "../context/AuthCtx";
 
-const Header = () => {
-
-    const userInfo = useContext(AuthCtx);
-
+const Header = ({email}) => {
+console.log(email)
     let userNav = <div id="user">
         <Link to="/create">Create Game</Link>
         <Link to="/logout">Logout</Link>
@@ -21,7 +17,7 @@ const Header = () => {
             <h1><Link className="home" to="/">GamesPlay</Link></h1>
             <nav>
                 <Link to="/games">All games</Link>
-                {sessionStorage.length > 0 
+                {email 
                         ? userNav
                         : guestNav
                     }

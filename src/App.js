@@ -1,12 +1,12 @@
 import { Route, Switch, Redirect } from 'react-router-dom'
 import { useState } from 'react';
-import Header from "./components/Header";
+import Header from "./components/Authorization/Header";
 import WelcomeWorld from "./components/Home/WelcomeWorld";
 import CatalogGame from "./components/GameCatalog/CatalogGame";
 import CreateGame from "./components/CreateGame";
 import DetailsGame from "./components/DetailsGame";
 import EditGame from "./components/EditGame";
-import Login from "./components/Login";
+import Login from "./components/Authorization/Login";
 import Register from "./components/Authorization/Register";
 import AuthCtx from "./context/AuthCtx";
 import * as util from './util.js'
@@ -16,11 +16,12 @@ function App() {
     const [userInfo, setUserInfo] = useState({});
 
     const onRegister = (user) => {
-        setUserInfo({ user });
+        setUserInfo(user);
     }
 
     const onLogin = (user) => {
-        setUserInfo({ user });
+        setUserInfo(user);
+        console.log(userInfo)
     }
 
     const onLogout = () => {
@@ -31,7 +32,7 @@ function App() {
     return (
         <AuthCtx.Provider value={userInfo}>
             <div id="box">
-                <Header />
+                <Header email={userInfo.email} />
                 <main id="main-content">
                     <Switch>
                         <Route path="/" exact component={WelcomeWorld} />
@@ -41,7 +42,8 @@ function App() {
                         <Route path="/details/:gameId" component={DetailsGame} />
                         <Route path="/login">
                             <Login onLogin={onLogin} />
-                        </Route>                    <Route path="/register" component={Register} />
+                        </Route>
+                        <Route path="/register" component={Register} />
                         <Route path="/register">
                             <Register onRegister={onRegister} />
                         </Route>
