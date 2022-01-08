@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 
 const Header = ({email}) => {
-console.log(email)
     let userNav = <div id="user">
         <Link to="/create">Create Game</Link>
         <Link to="/logout">Logout</Link>

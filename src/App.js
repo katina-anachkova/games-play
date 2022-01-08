@@ -21,7 +21,6 @@ function App() {
 
     const onLogin = (user) => {
         setUserInfo(user);
-        console.log(userInfo)
     }
 
     const onLogout = () => {
