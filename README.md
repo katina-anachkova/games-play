@@ -10,4 +10,5 @@ Hosting URL:
 
 https://softuni-games-play-58f15.web.app 
 
+### responsiveness: tbd
 
